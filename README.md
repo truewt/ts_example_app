@@ -21,20 +21,20 @@ curl -X POST \
 - you should get back this error:
 ```
 {
-    "name": "CustomRepositoryCannotInheritRepositoryError",
-    "message": "Custom entity repository UserRepository  cannot inherit Repository class without entity being set in the @EntityRepository decorator.",
+    "name": "CustomRepositoryNotFoundError",
+    "message": "Custom repository  was not found. Did you forgot to put @EntityRepository decorator on it?",
     "stack": "
-      CustomRepositoryCannotInheritRepositoryError: Custom entity repository UserRepository  cannot inherit Repository class without entity being set in the @EntityRepository decorator.
-        at new CustomRepositoryCannotInheritRepositoryError (/path/to/ts-example-app/src/error/CustomRepositoryCannotInheritRepositoryError.ts:8:9)
-        at EntityManager.getCustomRepository (/path/to/ts-example-app/src/entity-manager/EntityManager.ts:849:23)
-        at Connection.getCustomRepository (/path/to/ts-example-app/src/connection/Connection.ts:296:29)
-        at Object.value (/path/to/src/decorators/OrmCustomRepository.ts:18:31)
-        at /path/to/ts-example-app/src/Container.ts:214:37
+      CustomRepositoryNotFoundError: Custom repository  was not found. Did you forgot to put @EntityRepository decorator on it?
+        at new CustomRepositoryNotFoundError (/path/to/src/error/CustomRepositoryNotFoundError.ts:8:9)
+        at EntityManager.getCustomRepository (/path/to/src/entity-manager/EntityManager.ts:835:19)
+        at new BaseService (/path/to/src/services/base/base-service.ts:14:37)
+        at Function.Container.get (/path/to/src/Container.ts:115:32)
+        at /path/to/src/Container.ts:217:34
         at Array.map (native)
-        at Function.Container.initializeParams (/path/to/ts-example-app/src/Container.ts:211:27)
-        at Function.Container.get (/path/to/ts-example-app/src/Container.ts:94:47)
-        at /path/to/ts-example-app/src/Container.ts:217:34
-        at Array.map (native)
+        at Function.Container.initializeParams (/path/to/src/Container.ts:211:27)
+        at Function.Container.get (/path/to/src/Container.ts:94:47)
+        at Object.getFromContainer (/path/to/src/container.ts:53:44)
+        at ControllerMetadata.get [as instance] (/path/to/src/metadata/ControllerMetadata.ts:75:16)
     "
 }
 ```
