@@ -1,19 +1,18 @@
 import { Service } from "typedi";
-import { OrmCustomRepository } from "typeorm-typedi-extensions";
 import { User } from "../entities";
 import { UserRepository } from "../repositories";
+import { BaseService } from "./base/base-service";
 
 @Service()
-export class UserService {
+export class UserService extends BaseService<UserRepository> {
 
-  constructor(
-    @OrmCustomRepository(UserRepository)
-    private readonly userRepository: UserRepository
-  ) {}
+  protected repository: any;
 
   create(item: User): Promise<User> {
     // item.password = ...; // make sure not to store plain password
-    return this.userRepository.save(item);
+    // return this.userRepository.save(item);
+
+    return this.repository.save(item);
   }
 
 }
